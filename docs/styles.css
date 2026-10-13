@@ -1,0 +1,52 @@
+:root {
+  --ink: #222222;
+  --page: #FBFAF7;
+  --accent: #0B5563;
+  --muted: #B8B8B8;
+  --muted-background: #EFEDE7;
+}
+
+body {
+  background-color: var(--page);
+  color: var(--ink);
+  line-height: 1.65;
+}
+
+h1, h2, h3 {
+  color: var(--accent);
+}
+
+.quarto-title-banner {
+  background-color: var(--accent);
+}
+
+.quarto-title-banner h1,
+.quarto-title-banner .subtitle,
+.quarto-title-banner .quarto-category {
+  color: var(--page);
+  border-color: var(--page);
+}
+
+a {
+  color: var(--accent);
+  text-underline-offset: 3px;
+}
+
+.finding {
+  border-left: 6px solid var(--accent);
+  margin: 1.5rem 0;
+  padding: 0.25rem 1rem;
+}
+
+.methods-note {
+  background-color: var(--muted-background);
+  border-radius: 0.25rem;
+  font-size: 0.95rem;
+  margin-top: 1.5rem;
+  padding: 1rem;
+}
+
+.methods-note h3 {
+  font-size: 1.1rem;
+  margin-top: 0;
+}

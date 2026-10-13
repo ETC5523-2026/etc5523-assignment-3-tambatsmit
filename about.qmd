@@ -1,13 +1,21 @@
 ---
-title: "About"
+title: "Smit Tambat"
+subtitle: "Business analytics student at Monash University"
 image: profile.jpg
 about:
   template: jolla
   links:
     - icon: github
-      text: Github
-      href: https://github.com/etc5523-2022
-
+      text: GitHub
+      href: https://github.com/tambatsmit
+    - icon: linkedin
+      text: LinkedIn
+      href: https://www.linkedin.com/in/smit-tambat-9073b6206/
+    - icon: envelope
+      text: Email
+      href: mailto:tambat.smit@gmail.com
 ---
 
-This is a blog template for the ETC5523 Communicating with Data assessment at Monash University.
+I'm a Master of Business Analytics student at Monash University in Melbourne. Before moving into data, I worked in finance and founded my own clothing brand, Va&eacute; Lour.
+
+Running a small business taught me that numbers only matter when someone can act on them. That's what this blog is for: explaining evidence from research in plain language, for readers who don't have a statistics background.
