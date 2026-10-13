@@ -1,0 +1,249 @@
+---
+title: "German hospitals had fewer infections per patient, but Germany had more per resident"
+subtitle: "A 2019 study shows why a hospital-safety statistic depends on what it is divided by"
+author: "Smit Tambat"
+date: "2026-10-13"
+categories: [health, data communication]
+bibliography: references.bib
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+```{r}
+#| label: setup
+#| include: false
+library(tidyverse)
+library(kableExtra)
+library(scales)
+
+brand <- c(ink = "#222222", muted = "#B8B8B8", accent = "#0B5563")
+focus_colours <- c("Context" = brand[["muted"]], "Focus" = brand[["accent"]])
+
+theme_cwd <- function(base_size = 14) {
+  theme_minimal(base_size = base_size) +
+    theme(
+      plot.title.position = "plot",
+      plot.caption.position = "plot",
+      panel.grid.minor = element_blank(),
+      panel.grid.major.y = element_blank(),
+      axis.title = element_text(colour = brand[["ink"]]),
+      axis.text = element_text(colour = brand[["ink"]]),
+      plot.title = element_text(face = "bold", colour = brand[["ink"]]),
+      plot.subtitle = element_text(colour = "grey35"),
+      plot.caption = element_text(colour = "grey40", hjust = 0),
+      legend.position = "bottom",
+      plot.margin = margin(10, 36, 10, 10)
+    )
+}
+
+infection_rates <- tibble(
+  denominator = rep(c("Per 100 hospital patients", "Per 100,000 residents"), each = 2),
+  region = rep(c("Germany", "EU/EEA average"), times = 2),
+  rate = c(2.40, 2.83, 592.1, 467.9)
+) |>
+  mutate(
+    denominator = factor(
+      denominator,
+      levels = c("Per 100 hospital patients", "Per 100,000 residents")
+    ),
+    region = factor(region, levels = c("EU/EEA average", "Germany")),
+    focus = if_else(region == "Germany", "Focus", "Context"),
+    rate_label = if_else(
+      rate < 10,
+      label_number(accuracy = 0.01)(rate),
+      label_number(accuracy = 1)(rate)
+    )
+  )
+
+population_burden <- tibble(
+  measure = c("New infections", "Deaths caused by the infections", "Healthy years of life lost"),
+  germany = c(592.1, 20.1, 308.2),
+  europe = c(467.9, 15.3, 290.0),
+  ratio = c(1.27, 1.29, 1.06),
+  ratio_low = c(1.14, 0.78, 0.68),
+  ratio_high = c(1.43, 2.18, 1.67)
+) |>
+  mutate(
+    difference = paste0(label_percent(accuracy = 1)(ratio - 1), " higher"),
+    plausible_range = paste0(
+      label_percent(accuracy = 1, style_positive = "plus")(ratio_low - 1),
+      " to ",
+      label_percent(accuracy = 1, style_positive = "plus")(ratio_high - 1)
+    ),
+    clear_gap = if_else(ratio_low > 1, "Yes", "No: Germany could be lower")
+  )
+
+burden_by_type <- tibble(
+  infection = c(
+    "Pneumonia", "Surgical-site infection", "Bloodstream infection",
+    "Urinary tract infection", "C. difficile gut infection"
+  ),
+  cases = c(106586, 93222, 26976, 214150, 36002),
+  healthy_years_lost = c(69508, 28842, 58350, 66701, 20890)
+) |>
+  mutate(
+    `Share of infections` = cases / sum(cases),
+    `Share of healthy years lost` = healthy_years_lost / sum(healthy_years_lost),
+    infection = fct_reorder(infection, `Share of healthy years lost`)
+  ) |>
+  pivot_longer(
+    c(`Share of infections`, `Share of healthy years lost`),
+    names_to = "measure",
+    values_to = "share"
+  ) |>
+  mutate(
+    measure = factor(measure, levels = c("Share of infections", "Share of healthy years lost")),
+    focus = if_else(measure == "Share of healthy years lost", "Focus", "Context")
+  )
+```
+
+**In 2011, a patient in a German hospital was slightly less likely to develop a hospital infection than the average hospital patient in Europe. Across Germany's whole population, however, there were 27% more hospital infections per resident than the European average.**
+
+## Why this matters: one infection rate, two different answers
+
+Healthcare-associated infections are infections that patients develop as a result of medical care, such as pneumonia that begins on a hospital ward or an infection in a surgical wound. These infections lengthen hospital stays, and in Germany they contribute to thousands of deaths each year.
+
+Comparisons of hospital safety between countries often rely on a single infection rate. That rate can be calculated per hospital patient or per resident of the country, and the two versions can rank countries in opposite orders. A 2019 study led by researchers at the Robert Koch Institute, Germany's national public health agency, found exactly this result for Germany [@zacher2019]. The study is therefore a useful example for anyone who reads a claim that one country's hospitals are "safer" than another's.
+
+This post uses the study's results to answer two questions:
+
+1. **How much harm did hospital infections cause in Germany?**
+2. **Why did Germany have more hospital infections per resident when its hospitals had fewer infections per patient?**
+
+## What the study found
+
+::: {.methods-note}
+### Where the numbers come from
+
+The evidence comes from a one-day survey of hospital patients run in 2011 and 2012 by the European Centre for Disease Prevention and Control, which covered hospitals in 30 European countries [@ecdc2013]. On the survey day, hospital staff recorded whether each patient had an infection caused by their care. The German sample included 9,626 patients in 46 hospitals, which were randomly selected to represent German hospitals.
+
+Zacher et al. [-@zacher2019] used a statistical model to convert this one-day snapshot into yearly estimates for the whole population, building on an earlier Europe-wide study [@cassini2016]. The study covers five common infection types, which made up 79% of the hospital infections recorded in the survey, so the totals below understate the full number.
+:::
+
+### Five types of hospital infection caused about 16,000 deaths in Germany in 2011
+
+For 2011, the study estimated that five common types of hospital infection amounted to about **478,000 cases** in Germany, which caused about **16,000 deaths** and **249,000 healthy years of life lost** [@zacher2019]. The death estimate is equivalent to about 45 deaths every day.
+
+"Healthy years of life lost" is a plain-language name for a measure that researchers call a disability-adjusted life year (DALY). It adds together the years lost when people die early and the years people spend living with illness or disability. Using one measure allows an infection that rarely kills but causes long illness to be compared with an infection that is brief but often fatal.
+
+To put the total in context, pneumonia caught in hospital caused more than twice as many healthy years of life lost in Germany as influenza did (69,508 compared with 33,116) [@zacher2019]. All of these figures are model estimates rather than exact counts: the plausible range for deaths runs from about 10,900 to 22,800.
+
+### Per patient, Germany was below the European average; per resident, it was above
+
+@fig-flip shows the same infections counted in two ways. Measured per 100 hospital patients, Germany's infection rate was about 15% lower than the EU/EEA average. Measured per 100,000 residents, Germany's rate was 27% higher.
+
+```{r}
+#| label: fig-flip
+#| fig-cap: "Germany had about 15% fewer new hospital infections than the EU/EEA average per hospital patient, but 27% more per resident (2011-12)."
+#| fig-alt: "Two bar charts side by side. Left panel, new hospital infections per 100 hospital patients: Germany 2.40, EU/EEA average 2.83. Right panel, new hospital infections per 100,000 residents: Germany 592, EU/EEA average 468. Germany's bars are dark teal and the EU/EEA bars are grey."
+#| fig-width: 8
+#| fig-height: 3.6
+ggplot(infection_rates, aes(rate, region, fill = focus)) +
+  geom_col(width = 0.65) +
+  geom_text(
+    aes(label = rate_label),
+    hjust = -0.15, colour = brand[["ink"]], size = 4.5
+  ) +
+  facet_wrap(~ denominator, scales = "free_x") +
+  scale_fill_manual(values = focus_colours, guide = "none") +
+  scale_x_continuous(expand = expansion(mult = c(0, 0.25))) +
+  coord_cartesian(clip = "off") +
+  labs(
+    x = NULL, y = NULL,
+    title = "Germany ranks better per patient but worse per resident",
+    subtitle = "New hospital infections per year",
+    caption = "Source: Zacher et al. (2019), European point prevalence survey 2011-12"
+  ) +
+  theme_cwd() +
+  theme(
+    axis.text.x = element_blank(),
+    panel.grid.major.x = element_blank(),
+    strip.text = element_text(face = "bold", hjust = 0, colour = brand[["ink"]])
+  )
+```
+
+Both rates are correct, because they answer different questions. The rate per patient answers: *if I am admitted to hospital, how likely am I to develop an infection there?* The rate per resident answers: *how many hospital infections does the country experience relative to its population?*
+
+The authors explain the difference with the volume of hospital care in Germany. At the time of the study, Germany had the highest number of curative hospital beds in Europe and the second-highest number of hospital patients per 1,000 residents among 34 OECD countries [@zacher2019]. A slightly lower infection rate for each patient, multiplied by a much larger number of patients, produced a higher infection rate for the population. The authors also suggest that good infection-control practice in German hospitals may partly explain the lower rate per patient.
+
+::: {.finding}
+Germany's higher infection rate per resident most likely reflects the large number of people treated in its hospitals, rather than a higher risk for each patient.
+:::
+
+### Germany had more infections per resident; the gaps for deaths and healthy years lost are not clear
+
+@tbl-burden compares Germany with the EU/EEA average on three measures per 100,000 residents. Germany's estimates were higher on all three, but the study's uncertainty ranges show that only the gap in new infections is clear. For deaths and healthy years lost, the plausible range includes values where Germany is lower than the European average, so the data cannot show that Germany was worse on those two measures.
+
+```{r}
+#| label: tbl-burden
+#| tbl-cap: "Germany had 27% more new hospital infections per 100,000 residents than the EU/EEA average in 2011-12; its higher estimates for deaths and healthy years lost are uncertain."
+population_burden |>
+  select(measure, germany, europe, difference, plausible_range, clear_gap) |>
+  kbl(
+    col.names = c(
+      "Measure", "Germany", "EU/EEA average",
+      "Estimated difference", "Plausible range of the difference", "Is Germany clearly higher?"
+    ),
+    align = c("l", "r", "r", "r", "r", "l"),
+    digits = 0,
+    format.args = list(big.mark = ",")
+  ) |>
+  kable_classic(full_width = FALSE) |>
+  add_header_above(c(" " = 1, "Per 100,000 residents" = 2, "Germany compared with EU/EEA" = 3)) |>
+  row_spec(0, bold = TRUE)
+```
+
+### Urinary tract infections were the most common type, but not the most harmful
+
+The five infection types did not contribute equally to the harm. @fig-share compares each type's share of all infections with its share of healthy years lost. Urinary tract infections made up 45% of infections but 27% of healthy years lost. Pneumonia and bloodstream infections together made up 28% of infections but more than half of the healthy years lost, mainly because a larger share of those patients died [@zacher2019].
+
+```{r}
+#| label: fig-share
+#| fig-cap: "Urinary tract infections were 45% of hospital infections in Germany in 2011 but only 27% of healthy years lost; bloodstream infections caused far more harm than their share of infections suggests."
+#| fig-alt: "Two bar charts side by side comparing five infection types. Share of infections: urinary tract 45%, pneumonia 22%, surgical-site 20%, C. difficile 8%, bloodstream 6%. Share of healthy years lost: pneumonia 28%, urinary tract 27%, bloodstream 24%, surgical-site 12%, C. difficile 9%."
+#| fig-width: 8
+#| fig-height: 3.8
+ggplot(burden_by_type, aes(share, infection, fill = focus)) +
+  geom_col(width = 0.65) +
+  geom_text(
+    aes(label = label_percent(accuracy = 1)(share)),
+    hjust = -0.15, colour = brand[["ink"]], size = 4.2
+  ) +
+  facet_wrap(~ measure) +
+  scale_fill_manual(values = focus_colours, guide = "none") +
+  scale_x_continuous(expand = expansion(mult = c(0, 0.3))) +
+  coord_cartesian(clip = "off") +
+  labs(
+    x = NULL, y = NULL,
+    title = "The most common infection was not the most harmful",
+    subtitle = "Five hospital infection types, Germany, 2011",
+    caption = "Source: Zacher et al. (2019), Table 1"
+  ) +
+  theme_cwd() +
+  theme(
+    axis.text.x = element_blank(),
+    panel.grid.major.x = element_blank(),
+    strip.text = element_text(face = "bold", hjust = 0, colour = brand[["ink"]])
+  )
+```
+
+For readers, the practical point is that the number of infections alone does not show where the harm is. Bloodstream infections were the least common type in @fig-share, yet they caused almost as many healthy years lost as the far more common urinary tract infections.
+
+## Conclusion: ask whether a rate is per patient or per resident
+
+This post set out to answer two questions.
+
+**How much harm did hospital infections cause in Germany?** Zacher et al. [-@zacher2019] estimate that five common types of hospital infection amounted to about 478,000 cases in Germany in 2011, which caused about 16,000 deaths and 249,000 healthy years of life lost. Pneumonia and bloodstream infections caused more than half of those healthy years lost, even though urinary tract infections were the most common type.
+
+**Why did Germany have more infections per resident when its hospitals had fewer infections per patient?** Germany's infection rate was about 15% lower per hospital patient but 27% higher per resident, most likely because Germany treated an unusually large number of people in hospital. For this reason, the authors recommend combining infection prevention in hospitals with reducing hospital stays that could be avoided.
+
+Three limitations apply to these results. The figures are model estimates from a one-day survey in 2011, so they describe Germany at that time rather than today. They cover five infection types, which made up 79% of recorded hospital infections. And for deaths and healthy years lost, the data cannot confirm that Germany was worse than the European average.
+
+When a news report states that one country's hospitals are safer than another's, the first question to ask is whether the infection rate is measured per patient or per resident. As this study shows, the answer can reverse the ranking.
+
+## References
+
+::: {#refs}
+:::

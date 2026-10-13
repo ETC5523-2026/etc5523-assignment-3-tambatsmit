@@ -1,13 +1,95 @@
 ---
-title: "Smit Tambat's blog"
-subtitle: "Data stories for curious readers, written in plain language"
+pagetitle: "Smit Tambat | Data stories, told plainly"
+page-layout: full
 listing:
+  id: latest
   contents: posts
   sort: "date desc"
   type: default
-  categories: true
+  max-items: 1
+  fields: [image, title, subtitle, categories, date, reading-time]
+  categories: false
   sort-ui: false
   filter-ui: false
-page-layout: full
-title-block-banner: true
 ---
+
+::: {.hero .column-screen}
+<p class="hero-kicker">Data stories, told plainly</p>
+
+<h1 class="hero-title">Numbers make sense when the story is clear.</h1>
+
+<p class="hero-subtitle">I'm Smit, a business analytics student at Monash University. I turn research findings into clear, plain-language stories for curious readers.</p>
+
+[Read the latest story](posts/hai-germany/index.qmd){.hero-btn} [About me](about.qmd){.hero-btn-ghost}
+:::
+
+::: {.band .column-screen}
+::: {.band-inner}
+## Latest story
+
+::: {#latest}
+:::
+
+[See all stories &rarr;](blog.qmd){.band-link}
+:::
+:::
+
+::: {.band .band-dark .column-screen}
+::: {.band-inner}
+## The story in three numbers
+
+::: {.stats}
+::: {.stat}
+[16,000]{.stat-number}
+
+estimated deaths in Germany in 2011 from five types of hospital infection
+:::
+
+::: {.stat}
+[15% fewer]{.stat-number}
+
+infections per hospital patient in Germany than the European average
+:::
+
+::: {.stat}
+[27% more]{.stat-number}
+
+infections per resident in Germany than the European average
+:::
+:::
+
+[Read the full story &rarr;](posts/hai-germany/index.qmd){.band-link}
+:::
+:::
+
+::: {.band .band-soft .column-screen}
+::: {.band-inner}
+## How I write
+
+::: {.features}
+::: {.feature}
+<i class="bi bi-chat-square-text"></i>
+
+### Plain language
+
+No jargon. Every technical term is explained the first time it appears.
+:::
+
+::: {.feature}
+<i class="bi bi-bar-chart-line"></i>
+
+### Clear charts
+
+Each chart answers one question, with the key result highlighted.
+:::
+
+::: {.feature}
+<i class="bi bi-shield-check"></i>
+
+### Honest numbers
+
+Uncertainty and limitations are stated clearly, never hidden.
+:::
+:::
+:::
+:::

@@ -5,19 +5,38 @@ project:
     - .nojekyll
 
 website:
-  title: "Smit Tambat | Data, explained plainly"
+  title: "Smit Tambat"
+  back-to-top-navigation: true
   navbar:
-    background: "#0B5563"
-    foreground: "#FBFAF7"
+    background: "#0B1B3F"
+    foreground: "#FFFFFF"
     left:
       - href: index.qmd
+        text: Home
+      - href: blog.qmd
         text: Blog
+      - href: about.qmd
+        text: About
     right:
-      - about.qmd
       - icon: github
         href: https://github.com/tambatsmit
         aria-label: Smit Tambat on GitHub
+  page-footer:
+    left: "&copy; 2026 Smit Tambat"
+    center: "Made with R and [Quarto](https://quarto.org)"
+    right:
+      - icon: github
+        href: https://github.com/tambatsmit
+        aria-label: GitHub
+      - icon: linkedin
+        href: https://www.linkedin.com/in/smit-tambat-9073b6206/
+        aria-label: LinkedIn
+      - icon: envelope
+        href: mailto:tambat.smit@gmail.com
+        aria-label: Email
+
 format:
   html:
     theme: cosmo
     css: styles.css
+    smooth-scroll: true

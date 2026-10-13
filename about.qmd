@@ -4,6 +4,8 @@ subtitle: "Business analytics student at Monash University"
 image: profile.jpg
 about:
   template: jolla
+  image-shape: rounded
+  image-width: 16em
   links:
     - icon: github
       text: GitHub
@@ -18,4 +20,4 @@ about:
 
 I'm a Master of Business Analytics student at Monash University in Melbourne. Before moving into data, I worked in finance and founded my own clothing brand, Va&eacute; Lour.
 
-Running a small business taught me that numbers only matter when someone can act on them. That's what this blog is for: explaining evidence from research in plain language, for readers who don't have a statistics background.
+Running a business showed me that numbers are only useful when people can understand them and act on them. On this blog, I explain research findings in plain language for readers without a statistics background.

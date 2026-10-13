@@ -1,0 +1,13 @@
+---
+title: "Blog"
+subtitle: "Plain-language stories about what research findings really mean"
+title-block-banner: true
+listing:
+  contents: posts
+  sort: "date desc"
+  type: default
+  fields: [image, title, subtitle, categories, date, reading-time]
+  categories: false
+  sort-ui: false
+  filter-ui: false
+---
