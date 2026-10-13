@@ -1,5 +1,6 @@
 ---
-title: "ETC5523 Blog Assessment"
+title: "Smit Tambat's blog"
+subtitle: "Data stories for curious readers, written in plain language"
 listing:
   contents: posts
   sort: "date desc"
@@ -10,5 +11,3 @@ listing:
 page-layout: full
 title-block-banner: true
 ---
-
-
