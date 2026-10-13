@@ -1,6 +1,6 @@
 ---
 title: "Smit Tambat"
-subtitle: "Business analytics student at Monash University"
+subtitle: "Business Analytics student at Monash University"
 image: profile.jpg
 about:
   template: jolla
@@ -14,10 +14,10 @@ about:
       text: LinkedIn
       href: https://www.linkedin.com/in/smit-tambat-9073b6206/
     - icon: envelope
-      text: Email
+      text: tambat.smit@gmail.com
       href: mailto:tambat.smit@gmail.com
 ---
 
-I'm a Master of Business Analytics student at Monash University in Melbourne. Before moving into data, I worked in finance and founded my own clothing brand, Va&eacute; Lour.
+I'm a Master of Business Analytics student at Monash University. Before moving into Data Analytics, I have worked in Finance and had my own clothing brand, Va&eacute; Lour.
 
-Running a business showed me that numbers are only useful when people can understand them and act on them. On this blog, I explain research findings in plain language for readers without a statistics background.
+Running a business taught me that numbers are only useful when people can understand them and act on them. On this blog, I explain research findings in plain language for readers without a background in statistics.

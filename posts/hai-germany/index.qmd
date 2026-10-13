@@ -3,7 +3,7 @@ title: "German hospitals had fewer infections per patient, but Germany had more 
 subtitle: "A 2019 study shows why a hospital-safety statistic depends on what it is divided by"
 author: "Smit Tambat"
 date: "2026-10-13"
-categories: [health, data communication]
+categories: [Health, Data Communication]
 bibliography: references.bib
 execute:
   echo: false
@@ -18,7 +18,7 @@ library(tidyverse)
 library(kableExtra)
 library(scales)
 
-brand <- c(ink = "#222222", muted = "#B8B8B8", accent = "#0B5563")
+brand <- c(ink = "#222222", muted = "#B8B8B8", accent = "#E4572E")
 focus_colours <- c("Context" = brand[["muted"]], "Focus" = brand[["accent"]])
 
 theme_cwd <- function(base_size = 14) {
@@ -99,9 +99,21 @@ burden_by_type <- tibble(
   )
 ```
 
+::: {.jump-links}
+[Jump to:]{.jump-label} [Why this matters](#why-this-matters) [What the study found](#what-the-study-found) [Conclusion](#conclusion) [References](#references)
+:::
+
 **In 2011, a patient in a German hospital was slightly less likely to develop a hospital infection than the average hospital patient in Europe. Across Germany's whole population, however, there were 27% more hospital infections per resident than the European average.**
 
-## Why this matters: one infection rate, two different answers
+::: {.takeaways}
+Key takeaways
+
+- German hospitals had about 15% fewer new infections per patient than the European average.
+- Per resident, Germany had 27% more hospital infections, most likely because so many people are treated in its hospitals.
+- Pneumonia and bloodstream infections caused more than half of the harm, even though urinary tract infections were the most common.
+:::
+
+## Why this matters: one infection rate, two different answers {#why-this-matters}
 
 Healthcare-associated infections are infections that patients develop as a result of medical care, such as pneumonia that begins on a hospital ward or an infection in a surgical wound. These infections lengthen hospital stays, and in Germany they contribute to thousands of deaths each year.
 
@@ -112,7 +124,7 @@ This post uses the study's results to answer two questions:
 1. **How much harm did hospital infections cause in Germany?**
 2. **Why did Germany have more hospital infections per resident when its hospitals had fewer infections per patient?**
 
-## What the study found
+## What the study found {#what-the-study-found}
 
 ::: {.methods-note}
 ### Where the numbers come from
@@ -137,7 +149,7 @@ To put the total in context, pneumonia caught in hospital caused more than twice
 ```{r}
 #| label: fig-flip
 #| fig-cap: "Germany had about 15% fewer new hospital infections than the EU/EEA average per hospital patient, but 27% more per resident (2011-12)."
-#| fig-alt: "Two bar charts side by side. Left panel, new hospital infections per 100 hospital patients: Germany 2.40, EU/EEA average 2.83. Right panel, new hospital infections per 100,000 residents: Germany 592, EU/EEA average 468. Germany's bars are dark teal and the EU/EEA bars are grey."
+#| fig-alt: "Two bar charts side by side. Left panel, new hospital infections per 100 hospital patients: Germany 2.40, EU/EEA average 2.83. Right panel, new hospital infections per 100,000 residents: Germany 592, EU/EEA average 468. Germany's bars are orange and the EU/EEA bars are grey."
 #| fig-width: 8
 #| fig-height: 3.6
 ggplot(infection_rates, aes(rate, region, fill = focus)) +
@@ -231,7 +243,7 @@ ggplot(burden_by_type, aes(share, infection, fill = focus)) +
 
 For readers, the practical point is that the number of infections alone does not show where the harm is. Bloodstream infections were the least common type in @fig-share, yet they caused almost as many healthy years lost as the far more common urinary tract infections.
 
-## Conclusion: ask whether a rate is per patient or per resident
+## Conclusion: ask whether a rate is per patient or per resident {#conclusion}
 
 This post set out to answer two questions.
 
@@ -243,7 +255,13 @@ Three limitations apply to these results. The figures are model estimates from a
 
 When a news report states that one country's hospitals are safer than another's, the first question to ask is whether the infection rate is measured per patient or per resident. As this study shows, the answer can reverse the ranking.
 
-## References
+::: {.author-box}
+<img src="../../profile.jpg" class="author-avatar" alt="Photo of Smit Tambat">
+
+**Written by Smit Tambat**, a business analytics student at Monash University. [More about me](../../about.qmd)
+:::
+
+## References {#references}
 
 ::: {#refs}
 :::

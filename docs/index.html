@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Smit Tambat | Data stories, told plainly – Smit Tambat</title>
+<title>Smit Tambat | Blog</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -75,20 +75,20 @@ ul.task-list li input[type="checkbox"] {
 <script>
 
   window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-latest .list');
+    const listingTargetEl = window.document.querySelector('#listing-listing .list');
     if (!listingTargetEl) {
       // No listing discovered, do not attach.
       return; 
     }
 
     const options = {
-      valueNames: ['listing-image','listing-title','listing-subtitle','listing-categories','listing-date','listing-reading-time',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      valueNames: ['listing-image','listing-date','listing-title','listing-subtitle','listing-categories','listing-author','listing-reading-time',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
       
-      searchColumns: ["listing-date","listing-title","listing-author","listing-subtitle","listing-image","listing-description"],
+      searchColumns: ["listing-date","listing-title","listing-author","listing-subtitle","listing-image","listing-description","listing-categories"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-latest'] = new List('listing-latest', options);
+    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
 
     if (window['quarto-listing-loaded']) {
       window['quarto-listing-loaded']();
@@ -139,7 +139,7 @@ window.Quarto = {
 <body class="nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
@@ -155,10 +155,6 @@ window.Quarto = {
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
     <a class="nav-link active" href="./index.html" aria-current="page"> 
-<span class="menu-text">Home</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./blog.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
   <li class="nav-item">
@@ -180,37 +176,46 @@ window.Quarto = {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-page-left">
+      <h1 class="title">Blog</h1>
+            <p class="subtitle lead">The numbers behind the headlines</p>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta column-page-left">
+
+      
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RGF0YSUyMENvbW11bmljYXRpb24=">Data Communication <span class="quarto-category-count">(1)</span></div><div class="category" data-category="SGVhbHRo">Health <span class="quarto-category-count">(1)</span></div></div></div>
 <!-- main -->
-<main class="content page-columns page-full column-body" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
 
 
 
 
-<div class="hero column-screen">
-<p class="hero-kicker">
-Data stories, told plainly
-</p>
-<h1 class="hero-title">
-Numbers make sense when the story is clear.
-</h1>
-<p class="hero-subtitle">
-I’m Smit, a business analytics student at Monash University. I turn research findings into clear, plain-language stories for curious readers.
-</p>
-<p><a href="./posts/hai-germany/index.html" class="hero-btn">Read the latest story</a> <a href="./about.html" class="hero-btn-ghost">About me</a></p>
-</div>
-<div class="band column-screen">
-<section id="latest-story" class="level2 band-inner">
-<h2 class="anchored" data-anchor-id="latest-story">Latest story</h2>
-<div id="listing-latest" class="quarto-listing quarto-listing-container-default">
+
+
+
+
+
+<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
 <div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="aGVhbHRoJTJDZGF0YSUyMGNvbW11bmljYXRpb24=" data-listing-date-sort="1791810000000" data-listing-file-modified-sort="1791865103879" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="12" data-listing-word-count-sort="2264">
+<div class="quarto-post image-right" data-index="0" data-categories="SGVhbHRoJTJDRGF0YSUyMENvbW11bmljYXRpb24=" data-listing-date-sort="1791810000000" data-listing-file-modified-sort="1791871653523" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="12" data-listing-word-count-sort="2352">
 <div class="thumbnail"><a href="./posts/hai-germany/index.html" class="no-external">
 
-<p class="card-img-top"><img loading='lazy' src="posts\hai-germany\index_files\figure-html\fig-flip-1.png" alt="Two bar charts side by side. Left panel, new hospital infections per 100 hospital patients: Germany 2.40, EU/EEA average 2.83. Right panel, new hospital infections per 100,000 residents: Germany 592, EU/EEA average 468. Germany's bars are dark teal and the EU/EEA bars are grey."  class="thumbnail-image card-img"/></p>
+<p class="card-img-top"><img loading='lazy' src="posts\hai-germany\index_files\figure-html\fig-flip-1.png" alt="Two bar charts side by side. Left panel, new hospital infections per 100 hospital patients: Germany 2.40, EU/EEA average 2.83. Right panel, new hospital infections per 100,000 residents: Germany 592, EU/EEA average 468. Germany's bars are orange and the EU/EEA bars are grey."  class="thumbnail-image card-img"/></p>
 
 </a></div>
 <div class="body">
@@ -222,9 +227,9 @@ I’m Smit, a business analytics student at Monash University. I turn research f
 </div>
 <div class="listing-categories">
 
-<div class="listing-category" onclick="window.quartoListingCategory('aGVhbHRo'); return false;">health</div>
+<div class="listing-category" onclick="window.quartoListingCategory('SGVhbHRo'); return false;">Health</div>
 
-<div class="listing-category" onclick="window.quartoListingCategory('ZGF0YSUyMGNvbW11bmljYXRpb24='); return false;">data communication</div>
+<div class="listing-category" onclick="window.quartoListingCategory('RGF0YSUyMENvbW11bmljYXRpb24='); return false;">Data Communication</div>
 
 </div>
 </div>
@@ -233,69 +238,16 @@ I’m Smit, a business analytics student at Monash University. I turn research f
 <div class="listing-date">
 Oct 13, 2026
 </div>
+<div class="listing-author">
+Smit Tambat
+</div>
 <div class="listing-reading-time">12 min</div>
 </a>
 </div>
 </div>
 </div>
 <div class="listing-no-matching d-none">No matching items</div>
-</div>
-<p><a href="./blog.html" class="band-link">See all stories →</a></p>
-</section>
-</div>
-<div class="band band-dark column-screen">
-<section id="the-story-in-three-numbers" class="level2 band-inner">
-<h2 class="anchored" data-anchor-id="the-story-in-three-numbers">The story in three numbers</h2>
-<div class="stats">
-<div class="stat">
-<p><span class="stat-number">16,000</span></p>
-<p>estimated deaths in Germany in 2011 from five types of hospital infection</p>
-</div>
-<div class="stat">
-<p><span class="stat-number">15% fewer</span></p>
-<p>infections per hospital patient in Germany than the European average</p>
-</div>
-<div class="stat">
-<p><span class="stat-number">27% more</span></p>
-<p>infections per resident in Germany than the European average</p>
-</div>
-</div>
-<p><a href="./posts/hai-germany/index.html" class="band-link">Read the full story →</a></p>
-</section>
-</div>
-<div class="band band-soft column-screen">
-<section id="how-i-write" class="level2 band-inner">
-<h2 class="anchored" data-anchor-id="how-i-write">How I write</h2>
-<div class="features">
-<div class="feature">
-<p><i class="bi bi-chat-square-text"></i></p>
-<section id="plain-language" class="level3">
-<h3 class="anchored" data-anchor-id="plain-language">Plain language</h3>
-<p>No jargon. Every technical term is explained the first time it appears.</p>
-</section>
-</div>
-<div class="feature">
-<p><i class="bi bi-bar-chart-line"></i></p>
-<section id="clear-charts" class="level3">
-<h3 class="anchored" data-anchor-id="clear-charts">Clear charts</h3>
-<p>Each chart answers one question, with the key result highlighted.</p>
-</section>
-</div>
-<div class="feature">
-<p><i class="bi bi-shield-check"></i></p>
-<section id="honest-numbers" class="level3">
-<h3 class="anchored" data-anchor-id="honest-numbers">Honest numbers</h3>
-<p>Uncertainty and limitations are stated clearly, never hidden.</p>
-</section>
-</div>
-</div>
-</section>
-</div>
-
-
-
-
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+</div><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";

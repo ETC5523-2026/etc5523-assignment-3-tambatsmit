@@ -12,8 +12,6 @@ website:
     foreground: "#FFFFFF"
     left:
       - href: index.qmd
-        text: Home
-      - href: blog.qmd
         text: Blog
       - href: about.qmd
         text: About
@@ -40,3 +38,4 @@ format:
     theme: cosmo
     css: styles.css
     smooth-scroll: true
+    title-prefix: ""
