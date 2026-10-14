@@ -1,14 +1,15 @@
 ---
-title: "ETC5523 Blog Assessment"
+title: "Blog"
+subtitle: "The numbers behind the headlines"
+pagetitle: "Smit Tambat | Blog"
 listing:
   contents: posts
   sort: "date desc"
   type: default
+  fields: [image, date, title, subtitle, categories, author, reading-time]
   categories: true
   sort-ui: false
   filter-ui: false
 page-layout: full
 title-block-banner: true
 ---
-
-
