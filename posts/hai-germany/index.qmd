@@ -84,8 +84,8 @@ burden_by_type <- tibble(
   healthy_years_lost = c(69508, 28842, 58350, 66701, 20890)
 ) |>
   mutate(
-    `Share of infections` = cases / sum(cases),
-    `Share of healthy years lost` = healthy_years_lost / sum(healthy_years_lost),
+    `Share of infections` = cases / 478222,
+    `Share of healthy years lost` = healthy_years_lost / 248920,
     infection = fct_reorder(infection, `Share of healthy years lost`)
   ) |>
   pivot_longer(
@@ -209,12 +209,12 @@ population_burden |>
 
 ### Urinary tract infections were the most common type, but not the most harmful
 
-The five infection types did not contribute equally to the harm. @fig-share compares each type's share of all infections with its share of healthy years lost. Urinary tract infections made up 45% of infections but 27% of healthy years lost. Pneumonia and bloodstream infections together made up 28% of infections but more than half of the healthy years lost, mainly because a larger share of those patients died [@zacher2019].
+The five infection types did not contribute equally to the harm. @fig-share compares each type's share of all infections with its share of healthy years lost. Urinary tract infections made up 45% of infections but 27% of healthy years lost. Pneumonia and bloodstream infections together made up 28% of infections but 51% of the healthy years lost, mainly because a larger share of those patients died [@zacher2019].
 
 ```{r}
 #| label: fig-share
 #| fig-cap: "Urinary tract infections were 45% of hospital infections in Germany in 2011 but only 27% of healthy years lost; bloodstream infections caused far more harm than their share of infections suggests."
-#| fig-alt: "Two bar charts side by side comparing five infection types. Share of infections: urinary tract 45%, pneumonia 22%, surgical-site 20%, C. difficile 8%, bloodstream 6%. Share of healthy years lost: pneumonia 28%, urinary tract 27%, bloodstream 24%, surgical-site 12%, C. difficile 9%."
+#| fig-alt: "Two bar charts side by side comparing five infection types. Share of infections: urinary tract 45%, pneumonia 22%, surgical-site 19%, C. difficile 8%, bloodstream 6%. Share of healthy years lost: pneumonia 28%, urinary tract 27%, bloodstream 23%, surgical-site 12%, C. difficile 8%."
 #| fig-width: 8
 #| fig-height: 3.8
 ggplot(burden_by_type, aes(share, infection, fill = focus)) +
@@ -231,7 +231,7 @@ ggplot(burden_by_type, aes(share, infection, fill = focus)) +
     x = NULL, y = NULL,
     title = "The most common infection was not the most harmful",
     subtitle = "Five hospital infection types, Germany, 2011",
-    caption = "Source: Zacher et al. (2019), Table 1"
+    caption = "Source: Zacher et al. (2019), Table 1. Shares of the overall study totals"
   ) +
   theme_cwd() +
   theme(
